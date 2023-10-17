@@ -27,6 +27,12 @@
       "extractVersionTemplate": "^kong-?(?<version>.*)$"
     }
   ],
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["istio/istioctl"],
+      "groupName": "istio"
+    }
+  ],
   "customDatasources": {
     "gke-rapid": {
       "defaultRegistryUrlTemplate": "https://raw.githubusercontent.com/kong/gke-renovate-datasource/main/static/rapid.json",
