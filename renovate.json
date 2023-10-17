@@ -29,7 +29,10 @@
   "packageRules": [
     {
       "matchPackagePatterns": ["istio/istioctl"],
-      "groupName": "istio"
+      "groupName": "istio",
+      "matchUpdateTypes": [
+        "patch"
+      ]
     }
   ],
   "customDatasources": {
