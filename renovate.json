@@ -40,6 +40,13 @@
       "matchUpdateTypes": [
         "patch"
       ]
+    },
+    {
+      "matchPackagePatterns": ["kindest/node"],
+      "groupName": "node",
+      "matchUpdateTypes": [
+        "patch"
+      ]
     }
   ],
   "customDatasources": {
