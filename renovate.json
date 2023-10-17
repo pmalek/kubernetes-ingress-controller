@@ -33,6 +33,13 @@
       "matchUpdateTypes": [
         "patch"
       ]
+    },
+    {
+      "matchPackagePatterns": ["gke"],
+      "groupName": "gke",
+      "matchUpdateTypes": [
+        "patch"
+      ]
     }
   ],
   "customDatasources": {
