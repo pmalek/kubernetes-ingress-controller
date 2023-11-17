@@ -1,10 +1,14 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "configMigration": true,
-  "enabledManagers": ["regex"],
+  "enabledManagers": [
+    "custom.regex"
+  ],
   "automerge": false,
   "separateMinorPatch": true,
-  "labels": ["dependencies"],
+  "labels": [
+    "dependencies"
+  ],
   "customManagers": [
     {
       "customType": "regex",
@@ -28,21 +32,27 @@
   ],
   "packageRules": [
     {
-      "matchPackagePatterns": ["istio/istioctl"],
+      "matchPackagePatterns": [
+        "istio/istioctl"
+      ],
       "groupName": "istio",
       "matchUpdateTypes": [
         "patch"
       ]
     },
     {
-      "matchPackagePatterns": ["gke"],
+      "matchPackagePatterns": [
+        "gke"
+      ],
       "groupName": "gke",
       "matchUpdateTypes": [
         "patch"
       ]
     },
     {
-      "matchPackagePatterns": ["kindest/node"],
+      "matchPackagePatterns": [
+        "kindest/node"
+      ],
       "groupName": "node",
       "matchUpdateTypes": [
         "patch"
