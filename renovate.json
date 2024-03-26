@@ -52,15 +52,5 @@
         "renovate/auto-regenerate"
       ]
     }
-  ],
-  "regexManagers": [
-    {
-      "fileMatch": [
-        ".tools_versions.yaml"
-      ],
-      "matchStrings": [
-        "# renovate: datasource=(?<datasource>.*?) depName=(?<depName>.*?)\\n.+\"(?<currentValue>.*?)\""
-      ]
-    }
   ]
 }
