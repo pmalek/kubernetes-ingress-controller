@@ -70,7 +70,7 @@ kustomize: mise ## Download kustomize locally if necessary.
 	@$(MISE) plugin install --yes -q kustomize
 	@$(MISE) install -q kustomize@$(KUSTOMIZE_VERSION)
 
-CLIENT_GEN_VERSION = $(shell yq -ojson -r '.code-generator' < $(TOOLS_VERSIONS_FILE))
+CLIENT_GEN_VERSION = $(shell yq -ojson -r '.kube-code-generator' < $(TOOLS_VERSIONS_FILE))
 CLIENT_GEN = $(PROJECT_DIR)/bin/installs/kube-code-generator/$(CLIENT_GEN_VERSION)/bin/client-gen
 .PHONY: client-gen
 client-gen: mise ## Download client-gen locally if necessary.
