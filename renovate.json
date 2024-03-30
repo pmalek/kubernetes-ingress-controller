@@ -26,6 +26,7 @@
       ]
     },
     {
+      "description": "Match dependencies in .tools_verisons.yaml that are properly annotated with `# renovate: datasource={} depName={}.`",
       "customType": "regex",
       "fileMatch": [
         "\\.tools_versions\\.yaml$"
