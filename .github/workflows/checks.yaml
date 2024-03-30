@@ -82,11 +82,7 @@ jobs:
   test-reports:
     needs:
       - should-run-with-secrets
-      - unit-tests
-      - envtest-tests
-      - kongintegration-tests
-      - integration-tests
-      - conformance-tests
+      - build-docker-image
       - up-to-date
     if: always() && needs.should-run-with-secrets.outputs.result == 'true' && needs.up-to-date.outputs.status != 'true'
     uses: ./.github/workflows/_test_reports.yaml
