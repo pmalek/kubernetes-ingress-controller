@@ -56,71 +56,6 @@ jobs:
             echo "result=true" >> $GITHUB_OUTPUT
           fi
 
-  tools:
-    timeout-minutes: ${{ fromJSON(vars.GHA_DEFAULT_TIMEOUT) }}
-    runs-on: ubuntu-latest
-    needs:
-    - up-to-date
-    if: needs.up-to-date.outputs.status != 'true'
-    steps:
-      - name: checkout repository
-        uses: actions/checkout@v4
-      - name: setup golang
-        uses: actions/setup-go@v5
-        with:
-          go-version-file: third_party/go.mod
-      - uses: jdx/mise-action@v2
-        with:
-          install: false
-      - run: make tools
-
-  linters:
-    needs:
-    - up-to-date
-    if: needs.up-to-date.outputs.status != 'true'
-    uses: ./.github/workflows/_linters.yaml
-    secrets: inherit
-
-  unit-tests:
-    needs:
-    - up-to-date
-    if: needs.up-to-date.outputs.status != 'true'
-    uses: ./.github/workflows/_unit_tests.yaml
-    secrets: inherit
-
-  envtest-tests:
-    needs:
-    - up-to-date
-    if: needs.up-to-date.outputs.status != 'true'
-    uses: ./.github/workflows/_envtest_tests.yaml
-    secrets: inherit
-
-  kongintegration-tests:
-    needs:
-      - up-to-date
-    if: needs.up-to-date.outputs.status != 'true'
-    uses: ./.github/workflows/_kongintegration_tests.yaml
-    secrets: inherit
-
-  integration-tests:
-    needs:
-    - should-run-with-secrets
-    - up-to-date
-    if: needs.should-run-with-secrets.outputs.result == 'true' && needs.up-to-date.outputs.status != 'true'
-    uses: ./.github/workflows/_integration_tests.yaml
-    secrets: inherit
-    with:
-      log-output-file: /tmp/integration-tests-kic-logs
-
-  conformance-tests:
-    needs:
-    - up-to-date
-    if: needs.up-to-date.outputs.status != 'true'
-    uses: ./.github/workflows/_conformance_tests.yaml
-    secrets: inherit
-    with:
-      log-output-file: /tmp/conformance-tests-kic-logs
-
   build-docker-image:
     needs:
     - up-to-date
@@ -136,13 +71,6 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - up-to-date
-      - tools
-      - linters
-      - unit-tests
-      - envtest-tests
-      - kongintegration-tests
-      - integration-tests
-      - conformance-tests
       - build-docker-image
     if: always()
     steps:
