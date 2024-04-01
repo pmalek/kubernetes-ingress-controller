@@ -1,8 +1,6 @@
 name: performance tests (nightly)
 
 on:
-  schedule:
-    - cron: '30 5 * * *'
   workflow_dispatch: {}
 
 jobs:
