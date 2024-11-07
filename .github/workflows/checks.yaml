@@ -8,7 +8,7 @@ concurrency:
   cancel-in-progress: true
 
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - '**'
   push:
@@ -30,8 +30,6 @@ jobs:
     needs: check-permission
     outputs:
       status: ${{ steps.up-to-date.outputs.status }}
-    if: github.event_name == 'push' &&
-      (startsWith(github.ref, 'refs/heads/main') || startsWith(github.ref, 'refs/heads/release/'))
     steps:
       - name: checkout repository
         uses: actions/checkout@v4
@@ -40,6 +38,7 @@ jobs:
           fetch-depth: 0
       - name: Check if PR is up to date, if it is skip workflows for this ref
         id: 'up-to-date'
+        if: github.event_name == 'push' && startsWith(github.ref, 'refs/heads/')
         uses: Kong/public-shared-actions/pr-previews/up-to-date@v2.7.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
